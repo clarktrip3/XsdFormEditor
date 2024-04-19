@@ -69,7 +69,7 @@ namespace SemeionModulesDesigner
             // loadXSDToolStripMenuItem
             // 
             this.loadXSDToolStripMenuItem.Name = "loadXSDToolStripMenuItem";
-            this.loadXSDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadXSDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadXSDToolStripMenuItem.Text = "Load XSD";
             this.loadXSDToolStripMenuItem.Click += new System.EventHandler(this.LoadXSDToolStripMenuItemClick);
             // 
@@ -77,7 +77,7 @@ namespace SemeionModulesDesigner
             // 
             this.loadXMLToolStripMenuItem.Enabled = false;
             this.loadXMLToolStripMenuItem.Name = "loadXMLToolStripMenuItem";
-            this.loadXMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadXMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadXMLToolStripMenuItem.Text = "Load XML";
             this.loadXMLToolStripMenuItem.Click += new System.EventHandler(this.LoadXmlToolStripMenuItemClick);
             // 
@@ -85,21 +85,24 @@ namespace SemeionModulesDesigner
             // 
             this.saveXMLAsToolStripMenuItem.Enabled = false;
             this.saveXMLAsToolStripMenuItem.Name = "saveXMLAsToolStripMenuItem";
-            this.saveXMLAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveXMLAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveXMLAsToolStripMenuItem.Text = "Save XML as ...";
             this.saveXMLAsToolStripMenuItem.Click += new System.EventHandler(this.SaveXmlAsToolStripMenuItemClick);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
             // 
             // mainPanel
             // 
+            this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mainPanel.AutoScroll = true;
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(909, 474);
@@ -117,7 +120,7 @@ namespace SemeionModulesDesigner
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.mainMenuStrip);
             this.Name = "MainForm";
-            this.Text = "Semeion Form Designer v1.0";
+            this.Text = "XSD Form Editor";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using SemeionModulesDesigner.UI;
 using SemeionModulesDesigner.XmlSchemaParser.XsdModel;
 using SemeionModulesDesigner.XmlSchemaParser.XsdModel.Enums;
+using SemeionModulesDesigner.XmlSchemaParser.XsdModel.Interfaces;
 
 namespace SemeionModulesDesigner.Tests.UI
 {
@@ -20,7 +21,7 @@ namespace SemeionModulesDesigner.Tests.UI
             xContainer.Value = "test";
 
             //action
-            controlManager.GetGroupBoxGui(xContainer, xContainer);
+            controlManager.GenerateGui(xContainer, xContainer);
             controlManager.Save();
 
             //assert
@@ -48,7 +49,7 @@ namespace SemeionModulesDesigner.Tests.UI
             xContainer.Value = "test";
 
             //action
-            controlManager.GetGroupBoxGui(xForm.Root, xForm.Root);
+            controlManager.GenerateGui(xForm.Root, xForm.Root);
             var areControlsValid = controlManager.AreControlsValid();
 
             //assert
@@ -75,7 +76,8 @@ namespace SemeionModulesDesigner.Tests.UI
             xForm.Root.Elements.Add(xElement);
 
             //action
-            var groupBoxGui = controlManager.GetGroupBoxGui(xForm.Root, xForm.Root);
+            controlManager.GenerateGui(xForm.Root, xForm.Root);
+            var groupBoxGui = controlManager.RootContainer;
 
             //assert
             Assert.NotNull(groupBoxGui);
@@ -102,7 +104,7 @@ namespace SemeionModulesDesigner.Tests.UI
             xForm.Root.Elements.Add(xElement);
 
             //action
-            controlManager.GetGroupBoxGui(xForm.Root, xForm.Root);
+            controlManager.GenerateGui(xForm.Root, xForm.Root);
             controlManager.UpdateVisibleContainers(xForm.Root);
 
             //assert
@@ -137,7 +139,7 @@ namespace SemeionModulesDesigner.Tests.UI
             xForm.Root.Elements.Add(xElement);
 
             //action
-            controlManager.GetGroupBoxGui(xForm.Root, xForm.Root);
+            controlManager.GenerateGui(xForm.Root, xForm.Root);
             controlManager.UpdateBindingForVisibleContainer(xForm.Root);
 
             //assert

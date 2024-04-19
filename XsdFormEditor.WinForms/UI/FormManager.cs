@@ -27,11 +27,10 @@ namespace SemeionModulesDesigner.UI
         /// </summary>
         private XForm _xFormData;
 
-        internal FormManager(Panel mainPanel)
+        internal FormManager( Panel mainPanel )
         {
             _mainPanel = mainPanel;
             _controlManager = new ControlManager();
-
         }
 
 
@@ -39,7 +38,7 @@ namespace SemeionModulesDesigner.UI
         /// Creates XForm from given Xsd file
         /// </summary>
         /// <param name="file">Path to Xsd file.</param>
-        internal void GenerateFormFromXsdFile(string file)
+        internal void GenerateFormFromXsdFile( string file )
         {
             _mainPanel.Controls.Clear();
             _xForm = null;
@@ -48,41 +47,42 @@ namespace SemeionModulesDesigner.UI
 
             var xsdParser = new XsdParser();
 
-            _xForm = xsdParser.ParseXsdFile(file);
-            _xFormData = xsdParser.ParseXsdFile(file);
-            var generateGuiGetGroupBox = _controlManager.GetGroupBoxGui(_xForm.Root, _xFormData.Root);
+            _xForm = xsdParser.ParseXsdFile( file );
+            _xFormData = xsdParser.ParseXsdFile( file );
+            _controlManager.GenerateGui( _xForm.Root, _xFormData.Root );
+            var rootContainer = _controlManager.RootContainer;
 
-            _mainPanel.Controls.Add(generateGuiGetGroupBox);
+            _mainPanel.Controls.Add( rootContainer );
         }
 
         /// <summary>
         /// Updates values in XForm from given Xml file.
         /// </summary>
         /// <param name="fileName">Path to Xml file contains data.</param>
-        internal void UpdateFormFromXml(string fileName)
+        internal void UpdateFormFromXml( string fileName )
         {
             var xmlParser = new XmlParser();
-            var filledXForm = xmlParser.GetFilledXForm(fileName, _xForm);
+            var filledXForm = xmlParser.GetFilledXForm( fileName, _xForm );
 
-            if (filledXForm != null)
+            if ( filledXForm != null )
             {
                 _xFormData = filledXForm;
             }
 
-            _controlManager.UpdateVisibleContainers(_xFormData.Root);
-            _controlManager.UpdateBindingForVisibleContainer(_xFormData.Root);
+            _controlManager.UpdateVisibleContainers( _xFormData.Root );
+            _controlManager.UpdateBindingForVisibleContainer( _xFormData.Root );
         }
 
         /// <summary>
         /// Save XForm to Xml file.
         /// </summary>
         /// <param name="stream">Output stream.</param>
-        internal void SaveFormToXmlFile(Stream stream)
+        internal void SaveFormToXmlFile( Stream stream )
         {
             _controlManager.Save();
 
             var xmlWriter = new XmlWriter();
-            xmlWriter.WriteXFormToXmlFile(stream, _xFormData);
+            xmlWriter.WriteXFormToXmlFile( stream, _xFormData );
         }
 
         /// <summary>

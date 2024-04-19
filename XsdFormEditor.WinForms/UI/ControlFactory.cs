@@ -19,12 +19,14 @@ namespace SemeionModulesDesigner.UI
         /// <returns>Label control according to given XContainer.</returns>
         internal Label GetLabel(XContainer container)
         {
-            var label = new Label();
-            label.AutoSize = true;
-            label.Name = container.Name + "Label";
-            label.Size = new Size(35, 13);
-            label.TabIndex = 0;
-            label.Text = container.Name;
+            var label = new Label
+            {
+                AutoSize = true ,
+                Name = container.Name + "Label" ,
+                Size = new Size(35 , 13) ,
+                TabIndex = 0 ,
+                Text = $"Cntnr {container.Name}"
+            };
             return label;
         }
 
@@ -35,12 +37,14 @@ namespace SemeionModulesDesigner.UI
         /// <returns>Label control according to given XElement.</returns>
         internal Label GetLabel(XElement xElement)
         {
-            var label = new Label();
-            label.AutoSize = true;
-            label.Name = xElement.Name + "Label";
-            label.Size = new Size(35, 13);
-            label.TabIndex = 0;
-            label.Text = xElement.Name;
+            var label = new Label
+            {
+                AutoSize = true ,
+                Name = xElement.Name + "Label" ,
+                Size = new Size(35 , 13) ,
+                TabIndex = 0 ,
+                Text = $"Elmnt {xElement.Name}"
+            };
             return label;
         }
 
@@ -51,12 +55,14 @@ namespace SemeionModulesDesigner.UI
         /// <returns>Label control according to given IXAttribute.</returns>
         internal Label GetLabel(IXAttribute attribute)
         {
-            var label = new Label();
-            label.AutoSize = true;
-            label.Name = attribute.Name + "Label";
-            label.Size = new Size(35, 13);
-            label.TabIndex = 0;
-            label.Text = attribute.Name;
+            var label = new Label
+            {
+                AutoSize = true ,
+                Name = attribute.Name + "Label" ,
+                Size = new Size(35 , 13) ,
+                TabIndex = 0 ,
+                Text = $"Attr {attribute.Name}"
+            };
             return label;
         }
 
@@ -85,30 +91,26 @@ namespace SemeionModulesDesigner.UI
         {
             var control = new Control();
 
-            if (attribute is XAttribute<string>)
+            if (attribute is XAttribute<string> stringAttribute)
             {
-                var stringAttribute = (XAttribute<string>)attribute;
                 var textBox = new TextBox();
                 control = textBox;
-                control.DataBindings.Add("Text", stringAttribute, "Value");
+                control.DataBindings.Add("Text" , stringAttribute , "Value");
             }
-            else if (attribute is XAttribute<int>)
+            else if (attribute is XAttribute<int> intAttribute)
             {
-                var intAttribute = (XAttribute<int>)attribute;
                 var numericUpDown = new NumericUpDown();
-                numericUpDown.DataBindings.Add("Value", intAttribute, "Value");
+                numericUpDown.DataBindings.Add("Value" , intAttribute , "Value");
                 control = numericUpDown;
             }
-            else if (attribute is XAttribute<bool>)
+            else if (attribute is XAttribute<bool> boolAttribute)
             {
-                var boolAttribute = (XAttribute<bool>)attribute;
                 var checkBox = new CheckBox();
                 control = checkBox;
-                checkBox.DataBindings.Add("Checked", boolAttribute, "Value");
+                checkBox.DataBindings.Add("Checked" , boolAttribute , "Value");
             }
-            else if (attribute is XAttribute<DateTime>)
+            else if (attribute is XAttribute<DateTime> dateTimeAttribute)
             {
-                var dateTimeAttribute = (XAttribute<DateTime>)attribute;
                 var dateTimePicker = new DateTimePicker();
 
                 if (!dateTimeAttribute.Value.HasMeaning())
@@ -116,12 +118,11 @@ namespace SemeionModulesDesigner.UI
                     dateTimeAttribute.Value = DateTime.Now;
                 }
 
-                dateTimePicker.DataBindings.Add("Value", dateTimeAttribute, "Value");
+                dateTimePicker.DataBindings.Add("Value" , dateTimeAttribute , "Value");
                 control = dateTimePicker;
             }
-            else if (attribute is XEnumerationAttribute<string>)
+            else if (attribute is XEnumerationAttribute<string> enumerationAttribute)
             {
-                var enumerationAttribute = (XEnumerationAttribute<string>)attribute;
                 var enumeration = enumerationAttribute.Enumeration;
 
                 var comboBox = new ComboBox();
@@ -135,7 +136,7 @@ namespace SemeionModulesDesigner.UI
                 comboBox.EndUpdate();
 
                 comboBox.SelectedItem = enumerationAttribute.Value;
-                comboBox.DataBindings.Add("Text", enumerationAttribute, "Value");
+                comboBox.DataBindings.Add("Text" , enumerationAttribute , "Value");
                 control = comboBox;
             }
 
